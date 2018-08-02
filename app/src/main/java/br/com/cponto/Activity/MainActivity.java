@@ -1,76 +1,78 @@
 package br.com.cponto.Activity;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.location.Location;
-import android.location.LocationManager;
+import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import br.com.cponto.Adapters.AdapterMainActivity;
 import br.com.cponto.Config.FirebaseConfig;
-import br.com.cponto.Controller.EmployeeController;
 import br.com.cponto.Model.Register;
 import br.com.cponto.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EmployeeController employeeController;
-    private Register register;
+    private ListView listView;
     private FirebaseConfig firebaseConfig;
-    double longitude;
-    double latitude;
-
     private FloatingActionButton btnConfirm;
+    private ArrayList<Register> registerArrayList;
+    private AdapterMainActivity adapterMainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_point);
+        setContentView(R.layout.activity_main);
 
-        register = new Register();
+        listView = findViewById(R.id.main_list_view);
+        registerArrayList = new ArrayList<>();
+        adapterMainActivity = new AdapterMainActivity(this, registerArrayList);
+        listView.setAdapter(adapterMainActivity);
 
-        employeeController = new EmployeeController();
+        getData();
 
         btnConfirm = findViewById(R.id.feed_btn_cad);
-
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                LocationManager lm = (LocationManager) MainActivity.this.getSystemService(Context.LOCATION_SERVICE);
-                if (
-                        ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        ) {
-                    //Va para login
-                    
-                    return;
-                }
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                //Get allData
-                register.setLatitude((int) location.getLatitude());
-                register.setLongitude((int) location.getLongitude());
-                register.setTime((int) System.currentTimeMillis());
-                register.setUuid(firebaseConfig.getFirebaseAuth().getCurrentUser().getUid());
-
-                //Register
-                employeeController.setPoint(MainActivity.this,register);
-
-                Toast.makeText(MainActivity.this,String.valueOf(latitude)+"_"+String.valueOf(longitude),Toast.LENGTH_LONG).show();
-                Log.i("teste", String.valueOf(latitude)+"_"+String.valueOf(longitude) );
+                Intent intent = new Intent(MainActivity.this,UserCadActivity.class);
+                startActivity(intent);
 
             }
         });
 
+    }
+
+    private void getData() {
+        firebaseConfig.getFirebaseDatabase().child("points").child("2018").child("6").child("30").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Register register = snapshot.getValue(Register.class);
+                        registerArrayList.add(register);
+                    }
+                    adapterMainActivity.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

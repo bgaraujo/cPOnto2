@@ -29,10 +29,7 @@ public class EmployeeController {
         String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
         String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
-        firebaseConfig.getFirebaseDatabase().child("points").child(year).child(month).child(day).setValue(
-                "l",//register.getTime(),
-                "jhjhj"//register
-        );
+        firebaseConfig.getFirebaseDatabase().child("points").child(year).child(month).child(day).push().setValue(register);
 
     }
 
