@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:textAlignment="center"
-    tools:context=".Activity.UserCadActivity">
+    android:background="@color/windowBackground"
+    tools:context=".Activity.UserRegisterActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -44,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_action_clock" />
+                    app:srcCompat="@drawable/ic_action_clock_black" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -52,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Hora"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
 
                 <TextView
@@ -60,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -73,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_action_calendar_day" />
+                    app:srcCompat="@drawable/ic_action_calendar_day_back" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -81,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Data"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
 
                 <TextView
@@ -89,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -100,23 +105,26 @@
                 tools:context=".MapsActivity" />
 
             <RadioGroup
-                android:id="@+id/user_cad_status"
+                android:id="@+id/user_register_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/user_register_group_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="Início" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/user_register_group_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="Término" />
             </RadioGroup>
 
@@ -126,12 +134,15 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Observações"
+                android:textColor="#444"
+                android:textColorHint="@color/colorPrimaryDark"
                 android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/user_cad_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
                 android:text="Registrar" />
 
         </LinearLayout>

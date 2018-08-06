@@ -37,16 +37,15 @@ public class Picture {
         mediaFile = new File(mediaStorageDir.getPath() + File.separator
                 + "IMG_" + timeStamp + ".jpg");
 
-        saveinFirebase(mediaFile,"IMG_" + timeStamp + ".jpg");
         return mediaFile;
     }
 
-    public void saveinFirebase(File mediaFile, String name){
+    public void saveinFirebase(File mediaFile){
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        //Uri file = Uri.fromFile(mediaFile);
-        Uri file = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/cPonto");
-        StorageReference riversRef = mStorageRef.child("images/"+name);
+        Uri file = Uri.fromFile(mediaFile);
+        //Uri file = Uri.fromFile(mediaFile+"/cPonto");
+        StorageReference riversRef = mStorageRef.child("images/"+file.getLastPathSegment());
 
         riversRef.putFile(file)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

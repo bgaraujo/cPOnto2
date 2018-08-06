@@ -2,16 +2,34 @@ package br.com.cponto.Model;
 
 import com.google.firebase.database.Exclude;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Register {
 
-    private int  time;
-    private String uuid,txtAux;
+    private long  time;
+    private String uuid,txtAux,picture;
     private float latitude,longitude;
+    private int action;
+
+    public int getAction() {
+        return action;
+    }
+
+    public void setAction(int action) {
+        this.action = action;
+    }
 
     public Register(){}
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     public String getUuid() {
         return uuid;
@@ -37,11 +55,11 @@ public class Register {
         this.longitude = longitude;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
@@ -55,13 +73,17 @@ public class Register {
 
     @Exclude
     public String getDate(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-        return dateFormat.format(time);
+        Timestamp timestamp = new Timestamp(time);
+        Date date = new Date(timestamp.getTime());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(date);
     }
 
     @Exclude
     public String getHour(){
+        Timestamp timestamp = new Timestamp(time);
+        Date date = new Date(timestamp.getTime());
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        return timeFormat.format(time);
+        return timeFormat.format(date);
     }
 }

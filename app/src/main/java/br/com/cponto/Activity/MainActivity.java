@@ -1,15 +1,10 @@
 package br.com.cponto.Activity;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +12,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import br.com.cponto.Adapters.AdapterMainActivity;
 import br.com.cponto.Config.FirebaseConfig;
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,UserCadActivity.class);
+                Intent intent = new Intent(MainActivity.this,UserRegisterActivity.class);
                 startActivity(intent);
 
             }
@@ -55,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Feed
     private void getData() {
-        firebaseConfig.getFirebaseDatabase().child("points").child("2018").child("6").child("30").addListenerForSingleValueEvent(new ValueEventListener() {
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
+        firebaseConfig.getFirebaseDatabase().child("points").child(year).child(month).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
