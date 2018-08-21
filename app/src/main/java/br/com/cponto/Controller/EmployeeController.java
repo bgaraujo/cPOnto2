@@ -34,6 +34,7 @@ public class EmployeeController {
     public void setPoint(Context context , Register register) {
         String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
+        String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
         firebaseConfig.getFirebaseDatabase().child("points").child(year).child(month).push().setValue(register);
 

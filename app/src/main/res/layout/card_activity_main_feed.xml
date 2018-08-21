@@ -22,83 +22,160 @@
             android:minHeight="85dp"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/card_activity_image_profile"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:contentDescription="@string/profile_image"
-                android:rotation="270"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/card_activity_image_profile"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="13dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/card_activit_header_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="----"
+                    android:textAlignment="center"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="24sp"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:id="@+id/card_main_linear_in"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        app:srcCompat="@drawable/ic_action_calendar_day_back" />
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@drawable/ic_flag" />
 
                     <TextView
-                        android:id="@+id/card_activity_m_f_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:text="Entrou"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/card_main_text_time_in"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
                         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                        android:textSize="18sp" />
+                        android:text="-------------"
+                        android:textAlignment="viewEnd"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/card_main_linear_lunch_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@drawable/ic_local_dining" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="22dp"
+                        android:text="Inicio almoço"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/card_main_text_lunch_start"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------"
+                        android:textAlignment="viewEnd"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/card_main_linear_lunch_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@drawable/ic_local_dining" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:text="Termino almoço"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/card_main_text_lunch_finish"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------"
+                        android:textAlignment="viewEnd"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/card_main_linear_out"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:visibility="gone">
 
                     <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        app:srcCompat="@drawable/ic_action_clock_black" />
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@drawable/ic_directions_bike" />
 
                     <TextView
-                        android:id="@+id/card_activity_m_f_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:text="Saida"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                        tools:layout_editor_absoluteY="4dp" />
+                    <TextView
+                        android:id="@+id/card_main_text_out"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                        android:textSize="18sp" />
+                        android:text="----------"
+                        android:textAlignment="viewEnd"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saldo do dia"
+                        android:textSize="20dp"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20dp"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/colorAccent"/>
                 </LinearLayout>
 
             </LinearLayout>
-
-            <fragment
-                android:id="@+id/card_activity_map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_constraintBottom="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop="parent"
-                tools:context=".MapsActivity" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
